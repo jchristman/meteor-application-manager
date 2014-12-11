@@ -1,0 +1,154 @@
+<template name="windows">
+    {{#each windows}}
+        {{> window}}
+    {{/each}}
+</template>
+
+<template name="window">
+    {{#with calcZIndex}}
+        <div class="window{{#if isFocused}} focused{{/if}}{{#if isMinimized}} minimized{{/if}}{{#if isMaximized}} maximized{{/if}}" id={{id}} style="z-index: {{calc_z}}; position: absolute; top: {{top}}; left: {{left}}; width: {{width}}; height: {{height}};">
+            <div class="windowtitlebar">
+                <img src="/favicon.ico" width="16" height="16" class="titlebaricon">
+                <div class="titlebartext">{{title}}</div>
+                <div class="horizbuts">
+                    <div class="minimizebut glyphicon glyphicon-minus" title="minimize"></div>
+                    <div class="restorebut glyphicon glyphicon-share-alt" title="restore"></div>
+                    <div class="maximizebut glyphicon glyphicon-plus" title="maximize"></div>
+                    <div class="closebut glyphicon glyphicon-remove" title="close"></div>
+                </div>
+            </div>
+            <div class="windowcontent panel with-nav-tabs panel-default">
+                {{#if hasMenubar}}
+                    {{> menubar}}
+                    <div class="panes">
+                        {{#with paneTree}}
+                            {{> panes}}
+                        {{/with}}
+                    </div>
+                {{else}}
+                    {{#with paneTree}}
+                        {{> panes}}
+                    {{/with}}
+                {{/if}}
+
+            </div>
+            <div class="resizer-tl"></div>
+            <div class="resizer-t"></div>
+            <div class="resizer-tr"></div>
+            <div class="resizer-r"></div>
+            <div class="resizer-br"></div>
+            <div class="resizer-b"></div>
+            <div class="resizer-bl"></div>
+            <div class="resizer-l"></div>
+            <div class="dest-pane-outline-1"></div>
+            <div class="dest-pane-outline-2"></div>
+        </div>
+    {{/with}}
+</template>
+
+<template name="panes">
+    <div class="pane-container" id={{id}}>
+        {{#if isLeaf}}
+            {{> pane_content}}
+        {{else}}
+            {{#if splitIsVertical}}
+                {{#with splitPercentages}}
+                    <div class="pane pane-left" style="left: 0; top: 0; height: 100%; width: {{pane1_percent}}">
+                        {{#with paneChildLeft}}{{> panes}}{{/with}}
+                    </div>
+                    <div class="pane-divider pane-divider-vertical" id="{{id}}_divider" style="left: {{divider_position}};"></div>
+                    <div class="pane pane-right" style="left: {{pane2_start}}; top: 0; height: 100%; width: {{pane2_percent}}">
+                        {{#with paneChildRight}}{{> panes}}{{/with}}
+                    </div>
+                {{/with}}
+            {{else}}
+                {{#with splitPercentages}}
+                    <div class="pane pane-top" style="left: 0; top: 0; height: {{pane1_percent}}; width: 100%">
+                        {{#with paneChildTop}}{{> panes}}{{/with}}
+                    </div>
+                    <div class="pane-divider pane-divider-horizontal" id="{{id}}_divider" style="top: {{divider_position}};"></div>
+                    <div class="pane pane-bottom" style="left: 0; top: {{pane2_start}}; height: {{pane2_percent}}; width: 100%">
+                        {{#with paneChildBottom}}{{> panes}}{{/with}}
+                    </div>
+                {{/with}}
+            {{/if}}
+        {{/if}}
+    </div>
+</template>
+
+<template name="pane_content">
+    <div class="panel-heading">
+        <ul class="nav nav-tabs">
+            {{#with tabs id}}
+                {{#each windowTabs}}
+                    {{> tab_head}}
+                {{/each}}
+            {{/with}}
+        </ul>
+    </div>
+    <div class="panel-body">
+        <div class="tab-content">
+            {{#with tabs id}}
+                {{#each windowTabs}}
+                    {{> tab_body}}
+                {{/each}}
+            {{/with}}
+        </div>
+    </div>
+</template>
+
+<template name="tab_head">
+    <li class="tab-head draggableTab{{#if isActive}} active{{/if}}" id="head_{{id}}"><a href="#{{id}}">{{title}}</a></li>
+</template>
+
+<template name="tab_body">
+    <div class="tab-pane{{#if isActive}} active{{/if}}" id={{id}}>
+        {{#with tabContentContext id}}
+            {{> tabTemplate}}
+        {{/with}}
+    </div>
+</template>
+
+<template name="menubar">
+<div class="navbar-xs">
+    <div class="navbar navbar-default" role="navigation">
+        <ul class="nav navbar-nav">
+            {{> menubarMenu}}
+        </ul>
+    </div>
+</div> 
+</template>
+
+<template name="menubarMenu">
+    {{#with menuContext id}}
+        {{#each menu}}
+            <li>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">{{text}}</a>
+                <ul class="dropdown-menu compressed-context" role="menu">
+                    {{#each menuItems}}
+                        {{> menubarMenuItem}}
+                    {{/each}}
+                </ul>        
+            </li>
+        {{/each}}
+    {{/with}}
+</template>
+
+<template name="menubarMenuItem">
+    {{#if isDivider}}
+        <li class="divider"></li>
+    {{else}}
+        {{#if hasSubmenu}}
+            <li class="dropdown-submenu">
+                <a href="#">{{text}}</a>
+                <ul class="dropdown-menu compressed-context dropdown-context-sub">
+                    {{#each subMenu}}
+                        {{> menubarMenuItem}}
+                    {{/each}}
+                </ul>
+            </li>
+        {{else}}
+            <li><a class="menubarAction" href="#" data-action={{actionIndex}}>{{text}}</a></li>
+        {{/if}}
+    {{/if}}
+</template>
