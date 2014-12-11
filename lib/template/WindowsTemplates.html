@@ -15,7 +15,7 @@
 </template>
 
 <template name="AppManagerAppWindow">
-    <div class="window{{#if isFocused}} focused{{/if}}{{#if isMinimized}} minimized{{/if}}{{#if isMaximized}} maximized{{/if}}" id={{id}} style="z-index: {{zIndex}}; position: absolute; top: {{top}}; left: {{left}}; width: {{width}}; height: {{height}};">
+<div class="window{{#if isFocused}} focused{{/if}}{{#if isMinimized}} minimized{{/if}}{{#if isMaximized}} maximized{{/if}}" id={{id}} data-appID={{appID}} style="z-index: {{zIndex}}; position: absolute; top: {{top}}; left: {{left}}; width: {{width}}; height: {{height}};">
         <div class="windowtitlebar">
             <img src="/favicon.ico" width="16" height="16" class="titlebaricon">
             <div class="titlebartext">{{title}}</div>
@@ -64,7 +64,7 @@
                     <div class="pane pane-left" style="left: 0; top: 0; height: 100%; width: {{pane1_percent}}">
                         {{#with paneChildLeft}}{{> panes}}{{/with}}
                     </div>
-                    <div class="pane-divider pane-divider-vertical" id="{{id}}_divider" style="left: {{divider_position}};"></div>
+                    {{> pane_divider_vertical}}
                     <div class="pane pane-right" style="left: {{pane2_start}}; top: 0; height: 100%; width: {{pane2_percent}}">
                         {{#with paneChildRight}}{{> panes}}{{/with}}
                     </div>
@@ -74,7 +74,7 @@
                     <div class="pane pane-top" style="left: 0; top: 0; height: {{pane1_percent}}; width: 100%">
                         {{#with paneChildTop}}{{> panes}}{{/with}}
                     </div>
-                    <div class="pane-divider pane-divider-horizontal" id="{{id}}_divider" style="top: {{divider_position}};"></div>
+                    {{> pane_divider_horizontal}}
                     <div class="pane pane-bottom" style="left: 0; top: {{pane2_start}}; height: {{pane2_percent}}; width: 100%">
                         {{#with paneChildBottom}}{{> panes}}{{/with}}
                     </div>
@@ -82,6 +82,13 @@
             {{/if}}
         {{/if}}
     </div>
+</template>
+
+<template name="pane_divider_vertical">
+    <div class="pane-divider pane-divider-vertical" id="{{id}}_divider" style="left: {{divider_position}};"></div>
+</template>
+<template name="pane_divider_horizontal">
+    <div class="pane-divider pane-divider-horizontal" id="{{id}}_divider" style="top: {{divider_position}};"></div>
 </template>
 
 <template name="pane_content">
