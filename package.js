@@ -16,12 +16,14 @@ Package.onUse(function(api) {
   api.use('jchristman:context-menu@1.1.2_4','client');
 
   api.addFiles([
-      'lib/ApplicationManager.js',
       'collections/AppCollection.js',
+      'lib/ApplicationManager.js',
+      'lib/Application.js',
+      'lib/WindowManager/WindowManager.js',
   ],['client','server']);
 
   api.addFiles([
-      'lib/Window.js',
+      'lib/WindowManager/Window.js',
       'lib/style.css',
       'lib/context-menus/tab-context-menu-config.js',
       'lib/context-menus/pane-context-menu-config.js',

@@ -1,19 +1,19 @@
-WMCollection = new Meteor.Collection('WMCollection');
+AppCollection = new Meteor.Collection('AppCollection');
 
 if (Meteor.isClient) {
-    WMCollectionSubscription = Meteor.subscribe('WMCollection');
+    AppCollectionSubscription = Meteor.subscribe('AppCollection');
 }
 
 if (Meteor.isServer) {
-    Meteor.publish('WMCollection', function() {
+    Meteor.publish('AppCollection', function() {
         var user = Meteor.users.findOne(this.userId);
         if (user == undefined)
-            return undefined;
-        return WMCollection.find({$or : [ {'default' : 'profile'} , {'username' : user.username} ]});
+            return AppCollection.find({'default' : 'profile'}); //TODO: REMOVE THIS FOR SECURITY
+        return AppCollection.find({$or : [ {'default' : 'profile'} , {'username' : user.username} ]});
     });
 }
 
-WMCollection.allow({
+AppCollection.allow({
     insert: function (userId, settings) {
         var user = Meteor.users.findOne(userId);
         if (user == undefined)
