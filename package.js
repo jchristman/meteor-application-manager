@@ -17,9 +17,10 @@ Package.onUse(function(api) {
 
   api.addFiles([
       'collections/AppCollection.js',
-      'lib/ApplicationManager.js',
-      'lib/Application.js',
+      'lib/UserManager.js',
       'lib/WindowManager/WindowManager.js',
+      'lib/Application.js',
+      'lib/ApplicationManager.js',
   ],['client','server']);
 
   api.addFiles([

@@ -1,49 +1,57 @@
-<template name="windows">
-    {{#each windows}}
-        {{> window}}
+<template name="Applications">
+    {{#each applications}}
+        {{> AppManagerApplication}}
     {{/each}}
 </template>
 
-<template name="window">
-    {{#with calcZIndex}}
-        <div class="window{{#if isFocused}} focused{{/if}}{{#if isMinimized}} minimized{{/if}}{{#if isMaximized}} maximized{{/if}}" id={{id}} style="z-index: {{calc_z}}; position: absolute; top: {{top}}; left: {{left}}; width: {{width}}; height: {{height}};">
-            <div class="windowtitlebar">
-                <img src="/favicon.ico" width="16" height="16" class="titlebaricon">
-                <div class="titlebartext">{{title}}</div>
-                <div class="horizbuts">
-                    <div class="minimizebut glyphicon glyphicon-minus" title="minimize"></div>
-                    <div class="restorebut glyphicon glyphicon-share-alt" title="restore"></div>
-                    <div class="maximizebut glyphicon glyphicon-plus" title="maximize"></div>
-                    <div class="closebut glyphicon glyphicon-remove" title="close"></div>
-                </div>
+<template name="AppManagerApplication">
+    {{#if isAppOpen}}
+        {{#with layout}}
+            {{#each windows}}
+                {{> AppManagerAppWindow}}
+            {{/each}}
+        {{/with}}
+    {{/if}}
+</template>
+
+<template name="AppManagerAppWindow">
+    <div class="window{{#if isFocused}} focused{{/if}}{{#if isMinimized}} minimized{{/if}}{{#if isMaximized}} maximized{{/if}}" id={{id}} style="z-index: {{zIndex}}; position: absolute; top: {{top}}; left: {{left}}; width: {{width}}; height: {{height}};">
+        <div class="windowtitlebar">
+            <img src="/favicon.ico" width="16" height="16" class="titlebaricon">
+            <div class="titlebartext">{{title}}</div>
+            <div class="horizbuts">
+                <div class="minimizebut glyphicon glyphicon-minus" title="minimize"></div>
+                <div class="restorebut glyphicon glyphicon-share-alt" title="restore"></div>
+                <div class="maximizebut glyphicon glyphicon-plus" title="maximize"></div>
+                <div class="closebut glyphicon glyphicon-remove" title="close"></div>
             </div>
-            <div class="windowcontent panel with-nav-tabs panel-default">
-                {{#if hasMenubar}}
-                    {{> menubar}}
-                    <div class="panes">
-                        {{#with paneTree}}
-                            {{> panes}}
-                        {{/with}}
-                    </div>
-                {{else}}
+        </div>
+        <div class="windowcontent panel with-nav-tabs panel-default">
+            {{#if hasMenubar}}
+                {{> menubar}}
+                <div class="panes">
                     {{#with paneTree}}
                         {{> panes}}
                     {{/with}}
-                {{/if}}
+                </div>
+            {{else}}
+                {{#with paneTree}}
+                    {{> panes}}
+                {{/with}}
+            {{/if}}
 
-            </div>
-            <div class="resizer-tl"></div>
-            <div class="resizer-t"></div>
-            <div class="resizer-tr"></div>
-            <div class="resizer-r"></div>
-            <div class="resizer-br"></div>
-            <div class="resizer-b"></div>
-            <div class="resizer-bl"></div>
-            <div class="resizer-l"></div>
-            <div class="dest-pane-outline-1"></div>
-            <div class="dest-pane-outline-2"></div>
         </div>
-    {{/with}}
+        <div class="resizer-tl"></div>
+        <div class="resizer-t"></div>
+        <div class="resizer-tr"></div>
+        <div class="resizer-r"></div>
+        <div class="resizer-br"></div>
+        <div class="resizer-b"></div>
+        <div class="resizer-bl"></div>
+        <div class="resizer-l"></div>
+        <div class="dest-pane-outline-1"></div>
+        <div class="dest-pane-outline-2"></div>
+    </div>
 </template>
 
 <template name="panes">

@@ -8,8 +8,8 @@ if (Meteor.isServer) {
     Meteor.publish('AppCollection', function() {
         var user = Meteor.users.findOne(this.userId);
         if (user == undefined)
-            return AppCollection.find({'default' : 'profile'}); //TODO: REMOVE THIS FOR SECURITY
-        return AppCollection.find({$or : [ {'default' : 'profile'} , {'username' : user.username} ]});
+            return undefined;
+        return AppCollection.find({'_username' : user.username});
     });
 }
 

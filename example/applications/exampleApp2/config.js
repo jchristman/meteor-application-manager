@@ -1,5 +1,6 @@
 var application = {
     appID : 'c2dce4b4-5585-4a41-93d8-a22dc27fdc35',
+    appOpen : true,
     layout : {
         windows : [
             {
