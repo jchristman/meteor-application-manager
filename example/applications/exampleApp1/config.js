@@ -5,7 +5,7 @@ var application = {
         windows : [
             {
                 id : "test1", 
-                title : "Test Title 1",
+                title : "Test 1 Title",
                 focused : true,
                 top : "0%", 
                 left : "0%", 
@@ -19,16 +19,16 @@ var application = {
         tabs : [
             {
                 id : "test-tab1",
-                title : "Test Tab 1",
+                title : "Test 1 Tab 1",
                 pane_id : "test1_pane",
                 active : true,
                 template : "test_template1"
             },
             {
                 id : "test-tab2",
-                title : "Test Tab 2",
+                title : "Test 1 Tab 2",
                 pane_id : "test1_pane",
-                active : true,
+                active : false,
                 template : "test_template2"
             }
         ]

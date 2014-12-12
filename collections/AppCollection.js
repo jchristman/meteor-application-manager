@@ -14,16 +14,16 @@ if (Meteor.isServer) {
 }
 
 AppCollection.allow({
-    insert: function (userId, settings) {
+    /*insert: function (userId, settings) {
         var user = Meteor.users.findOne(userId);
         if (user == undefined)
             return false;
         return (settings.username == user.username);
-    },
+    },*/
     update: function (userId, settings) {
         var user = Meteor.users.findOne(userId);
         if (user == undefined)
             return false;
-        return (settings.username == user.username);
+        return (settings._username == user.username);
     }
 });

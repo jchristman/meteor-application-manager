@@ -19,16 +19,16 @@ var application = {
         tabs : [
             {
                 id : "test2-tab",
-                title : "Test 2 Tab 2",
+                title : "Test 2 Tab 1",
                 pane_id : "test2_pane",
                 active : true,
                 template : "test2_template1"
             },
             {
                 id : "test2-tab2",
-                title : "Test Tab 2",
+                title : "Test 2 Tab 2",
                 pane_id : "test2_pane",
-                active : true,
+                active : false,
                 template : "test2_template2"
             }
         ]

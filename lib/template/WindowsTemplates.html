@@ -96,7 +96,7 @@
         <ul class="nav nav-tabs">
             {{#with tabs id}}
                 {{#each windowTabs}}
-                    {{> tab_head}}
+                   {{> tab_head}}
                 {{/each}}
             {{/with}}
         </ul>
@@ -118,7 +118,7 @@
 
 <template name="tab_body">
     <div class="tab-pane{{#if isActive}} active{{/if}}" id={{id}}>
-        {{#with tabContentContext id}}
+        {{#with tabContentContext}}
             {{> tabTemplate}}
         {{/with}}
     </div>
