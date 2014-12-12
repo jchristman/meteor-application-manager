@@ -1,35 +1,36 @@
 var application = {
-    appID : 'c2dce4b4-5585-4a41-93d8-a22dc27fdc35',
+    appID : '7fdfa045-5bd4-49c9-b829-8c3317ea4b06',
     appOpen : true,
     layout : {
         windows : [
             {
-                id : "test2", 
-                title : "Test 2 Title",
+                id : "exampleApp2", 
+                title : "Example Application 2",
                 focused : true,
-                top : "30%", 
-                left : "30%", 
+                top : "0%", 
+                left : "50%", 
                 width : "50%", 
                 height : "50%",
-                zIndex : 3,
-    //            menubar : MENU_BAR
+                zIndex : 1,
+                menubar : MENU_BAR
             }
+
         ],
 
         tabs : [
             {
-                id : "test2-tab",
-                title : "Test 2 Tab 1",
-                pane_id : "test2_pane",
+                id : "exampleApp2-tab1",
+                title : "Example App 2 Tab 1",
+                pane_id : "exampleApp2_pane",
                 active : true,
-                template : "test2_template1"
+                template : "exampleApp2_template1"
             },
             {
-                id : "test2-tab2",
-                title : "Test 2 Tab 2",
-                pane_id : "test2_pane",
+                id : "exampleApp2-tab2",
+                title : "Example App 2 Tab 2",
+                pane_id : "exampleApp2_pane",
                 active : false,
-                template : "test2_template2"
+                template : "exampleApp2_template2"
             }
         ]
     }

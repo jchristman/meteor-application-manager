@@ -8,7 +8,9 @@
     {{#if isAppOpen}}
         {{#with layout}}
             {{#each windows}}
-                {{> AppManagerAppWindow}}
+                {{#if isWindowOpen}}
+                    {{> AppManagerAppWindow}}
+                {{/if}}
             {{/each}}
         {{/with}}
     {{/if}}
@@ -113,7 +115,7 @@
 </template>
 
 <template name="tab_head">
-    <li class="tab-head draggableTab{{#if isActive}} active{{/if}}" id="head_{{id}}"><a href="#{{id}}">{{title}}</a></li>
+    <li class="tab-head draggableTab{{#if isActive}} active{{/if}}" id="head_{{id}}"><a style="cursor: pointer">{{title}}</a></li>
 </template>
 
 <template name="tab_body">
@@ -138,7 +140,7 @@
     {{#with menuContext id}}
         {{#each menu}}
             <li>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">{{text}}</a>
+                <a class="dropdown-toggle" data-toggle="dropdown" role="button" style="cursor: pointer">{{text}}</a>
                 <ul class="dropdown-menu compressed-context" role="menu">
                     {{#each menuItems}}
                         {{> menubarMenuItem}}
@@ -163,7 +165,7 @@
                 </ul>
             </li>
         {{else}}
-            <li><a class="menubarAction" href="#" data-action={{actionIndex}}>{{text}}</a></li>
+            <li><a class="menubarAction" style="cursor: pointer" data-action={{actionIndex}}>{{text}}</a></li>
         {{/if}}
     {{/if}}
 </template>

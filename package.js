@@ -37,6 +37,7 @@ Package.onUse(function(api) {
         'ApplicationManager',
         'AppManager',
         'AppCollection',
+        'Application',
         'CONTEXT_MENU_FUNCS'
   ], ['client','server']); 
 });

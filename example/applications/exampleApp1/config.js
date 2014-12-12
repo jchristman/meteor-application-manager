@@ -4,32 +4,32 @@ var application = {
     layout : {
         windows : [
             {
-                id : "test1", 
-                title : "Test 1 Title",
+                id : "exampleApp1", 
+                title : "Example Application 1",
                 focused : true,
                 top : "0%", 
                 left : "0%", 
                 width : "50%", 
-                height : "50%",
-                zIndex : 3,
-    //            menubar : MENU_BAR
+                height : "75%",
+                zIndex : 1,
+                menubar : MENU_BAR
             }
         ],
 
         tabs : [
             {
-                id : "test-tab1",
-                title : "Test 1 Tab 1",
-                pane_id : "test1_pane",
+                id : "exampleApp1-tab1",
+                title : "Example App 1 Tab 1",
+                pane_id : "exampleApp1_pane",
                 active : true,
-                template : "test_template1"
+                template : "exampleApp1_template1"
             },
             {
-                id : "test-tab2",
-                title : "Test 1 Tab 2",
-                pane_id : "test1_pane",
+                id : "exampleApp1-tab2",
+                title : "Example App 1 Tab 2",
+                pane_id : "exampleApp1_pane",
                 active : false,
-                template : "test_template2"
+                template : "exampleApp1_template2"
             }
         ]
     }

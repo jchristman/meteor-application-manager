@@ -249,6 +249,15 @@ The below is from http://bootsnipp.com/snippets/featured/panels-with-nav-tabs
 }
 /********************************************************************/
 /*** PANEL DEFAULT ***/
+.nav {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .with-nav-tabs.panel-default .nav-tabs > li > a,
 .with-nav-tabs.panel-default .nav-tabs > li > a:hover,
 .with-nav-tabs.panel-default .nav-tabs > li > a:focus {
@@ -507,6 +516,15 @@ The below is from http://bootsnipp.com/snippets/featured/panels-with-nav-tabs
 }
 
 .panes { position: relative; min-height: calc(100% - 28px); width : 100%; }
+
+.navbar {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 .navbar-xs .navbar { min-height:28px; height: 28px; margin: 0px; }
 .navbar-xs .navbar .navbar-brand{ padding: 0px 12px;font-size: 16px;line-height: 28px; }
