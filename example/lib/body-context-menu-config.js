@@ -32,12 +32,34 @@ BODY_CONTEXT_MENU = {
 
 BODY_MENU_FUNCS = {
     startApplication : function(selector) {
-        return [
-
-            ]
+        var appMenu = _.map(AppManager.getApps(), function(app) {
+            if (!app.getAppData().appOpen) {
+                return {
+                    text : app.appName,
+                    action : function(e, selector) {
+                        app.startApp();
+                    }
+                }
+            }
+        });
+        return appMenu.filter(function(app) {
+            return (app != undefined);
+        });
     },
 
     quitApplication : function(selector) {
-        console.log(selector);
+        var appMenu = _.map(AppManager.getApps(), function(app) {
+            if (app.getAppData().appOpen) {
+                return {
+                    text : app.appName,
+                    action : function(e, selector) {
+                        app.quitApp();
+                    }
+                }
+            }
+        });
+        return appMenu.filter(function(app) {
+            return (app != undefined);
+        });
     }
 }
