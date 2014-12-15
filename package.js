@@ -13,7 +13,7 @@ Package.onUse(function(api) {
   api.use('templating', 'client');
   api.use('jquery','client');
   api.use('mizzao:jquery-ui@1.11.2','client')
-  api.use('jchristman:context-menu@1.1.2_4','client');
+  api.use('jchristman:context-menu@1.1.3','client');
 
   api.addFiles([
       'collections/AppCollection.js',
