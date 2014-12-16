@@ -22,10 +22,10 @@
             <img src="/favicon.ico" width="16" height="16" class="titlebaricon">
             <div class="titlebartext">{{title}}</div>
             <div class="horizbuts">
-                <div class="minimizebut glyphicon glyphicon-minus" title="minimize"></div>
-                <div class="restorebut glyphicon glyphicon-share-alt" title="restore"></div>
-                <div class="maximizebut glyphicon glyphicon-plus" title="maximize"></div>
                 <div class="closebut glyphicon glyphicon-remove" title="close"></div>
+                {{#if hasMaximizeButton}}<div class="maximizebut glyphicon glyphicon-plus" title="maximize"></div>{{/if}}
+                {{#if hasRestoreButton}}<div class="restorebut glyphicon glyphicon-share-alt" title="restore"></div>{{/if}}
+                {{#if hasMinimizeButton}}<div class="minimizebut glyphicon glyphicon-minus" title="minimize"></div>{{/if}}
             </div>
         </div>
         <div class="windowcontent panel with-nav-tabs panel-default">
@@ -54,16 +54,21 @@
                 {{/if}}
             {{/if}}
         </div>
-        <div class="resizer-tl"></div>
-        <div class="resizer-t"></div>
-        <div class="resizer-tr"></div>
-        <div class="resizer-r"></div>
-        <div class="resizer-br"></div>
-        <div class="resizer-b"></div>
-        <div class="resizer-bl"></div>
-        <div class="resizer-l"></div>
-        <div class="dest-pane-outline-1"></div>
-        <div class="dest-pane-outline-2"></div>
+
+        {{#if isResizable}}
+            <div class="resizer-tl"></div>
+            <div class="resizer-t"></div>
+            <div class="resizer-tr"></div>
+            <div class="resizer-r"></div>
+            <div class="resizer-br"></div>
+            <div class="resizer-b"></div>
+            <div class="resizer-bl"></div>
+            <div class="resizer-l"></div>
+        {{/if}}
+        {{#if isTabbed}}
+            <div class="dest-pane-outline-1"></div>
+            <div class="dest-pane-outline-2"></div>
+        {{/if}}
     </div>
 </template>
 

@@ -89,12 +89,12 @@
   position: absolute;
   top: 0;
   width: 59px;
-  right: 0;
+  right: 2px;
   bottom: 0;
 }
 
 .horizbuts > * {
-  float: left;
+  float: right;
   width: 17px;
   height: 17px;
   border: 1px outset #9B9DC9;
