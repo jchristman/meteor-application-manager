@@ -31,17 +31,28 @@
         <div class="windowcontent panel with-nav-tabs panel-default">
             {{#if hasMenubar}}
                 {{> menubar}}
-                <div class="panes">
+                {{#if isTabbed}}
+                    <div class="panes">
+                        {{#with paneTree}}
+                            {{> panes}}
+                        {{/with}}
+                    </div>
+                {{else}}
+                    {{#with noTabsTemplate}}
+                        {{> noTabsContent}}
+                    {{/with}}
+                {{/if}}
+            {{else}}
+                {{#if isTabbed}}
                     {{#with paneTree}}
                         {{> panes}}
                     {{/with}}
-                </div>
-            {{else}}
-                {{#with paneTree}}
-                    {{> panes}}
-                {{/with}}
+                {{else}}
+                    {{#with noTabsTemplate}}
+                        {{> noTabsContent}}
+                    {{/with}}
+                {{/if}}
             {{/if}}
-
         </div>
         <div class="resizer-tl"></div>
         <div class="resizer-t"></div>
