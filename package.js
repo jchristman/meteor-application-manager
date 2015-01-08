@@ -1,7 +1,7 @@
 Package.describe({
   name: 'jchristman:application-manager',
   summary: 'Meteor package to easily allow desktop-like applications in meteor',
-  version: '1.0.2',
+  version: '1.0.3',
   git: 'https://github.com/suntzuII/meteor-application-manager'
 });
 
@@ -13,7 +13,7 @@ Package.onUse(function(api) {
   api.use('templating', 'client');
   api.use('jquery','client');
   api.use('mizzao:jquery-ui@1.11.2','client')
-  api.use('jchristman:context-menu@1.1.3','client');
+  api.use('jchristman:context-menu@1.1.4','client');
 
   api.addFiles([
       'collections/AppCollection.js',
