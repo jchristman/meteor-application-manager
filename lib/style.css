@@ -10,13 +10,11 @@
     top: 0px;
     bottom: 0px;
     width: 100%;
-    pointer-events: none;
 }
 
 .tab-pane {
     position: relative;
     min-height: 100%;
-    pointer-events: none;
 }
 
 .panel-heading .nav > li > a {

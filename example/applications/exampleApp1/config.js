@@ -1,3 +1,9 @@
+if (Meteor.isClient) {
+    Meteor.startup(function() {
+        Session.set('_app1_msg', 'Public API accessible message');
+    });
+}
+
 var application = {
     appID : 'f6235091-95f3-4691-aa95-8105a8c40f01',
     appName : 'Example Application 1',
@@ -33,6 +39,11 @@ var application = {
                 template : "exampleApp1_template2"
             }
         ]
+    },
+    api : {
+        setMessage : function(msg) {
+            if (Meteor.isClient) Session.set('_app1_msg', msg);
+        }
     }
 };
 

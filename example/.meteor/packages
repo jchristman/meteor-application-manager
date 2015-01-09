@@ -5,7 +5,7 @@
 
 meteor-platform
 jquery
-mizzao:bootstrap-3
+twbs:bootstrap
 jchristman:application-manager
 jchristman:context-menu
 accounts-password

@@ -15,6 +15,7 @@ This library is a package designed to make desktop-like application in a web bro
 - Draggable tabs
   - Drag tabs between windows/panes
   - Drag and drop to create new panes on the fly
+- Create an Application-Specific API that is accessible to other applications via an easy-to-use calling function
 
 One of the main features of this library is that it is a **database-defined UI layout**. What does that mean? What it means is that when you (the application developer) define the window layout structure, a default "Window Manager Profile" is created in the WMCollection. When a user logs in for the first time, a copy of this profile is created for them. Then, any UI changes (like dragging windows, moving tabs, etc) updates their profile to reflect the changes, then the reactive templating system takes care of rerendering everything.
 
@@ -31,124 +32,85 @@ Installation
 
 meteor add jchristman:window-manager
 
-Using the Windows
-=================
+Using the Applications
+======================
 
-After defining the windows (API explained below), you will need to include the "windows" template like this:
+After defining the applications (API explained below), you will need to include the "Applications" template like this:
 
 ```
 {{#if currentUser}}
-    {{> windows}}
+    {{> Applications}}
 {{else}}
     {{> loginButtons}}
 {{/if}}
 ```
 
-It is important to note that this library **requires** the accounts system from meteor. If noone logs, in then there is no Windows Profile and this will not work. A simple of way of exposing this is with an if currentUser template statement. The "windows" template is defined **by the library. Do not define your own "windows" template**.
+It is important to note that this library **requires** the accounts system from meteor. If noone logs in, then there is no Windows Profile and this will not work. A simple of way of exposing this is with an if currentUser template statement. The "Applications" template is defined **by the library. Do not define your own "windows" template**.
 
-Configuring the Window Manager
-==============================
-After defining the objects, you will need to call a configuration function and an init function.
+Defining the Applications
+=========================
 
-```
-WindowManager.configure(WINDOWS_OBJECT);
-WindowManager.init(SETTINGS);
-```
-
-This needs be done in a directory **that will be run on both the server and the client**. My suggestion would be to place this in a file at lib/wm-config.js withing your meteor project directory. The SETTINGS object is optional and the valid settings are below.
-
-| Setting | Valid Values | Description |
-| ------- | :----------: | ----------- |
-| minimizeFunction | JS function | A function that will be called when minimizing the windows. This exposes functionality to change how a minimization function is handled |
-| layerDepth | integer | A number that defines how large of a range of zIndex values to use |
-
-Defining the Windows
-=================
-
-Define the window as an object: You can define a window object with roughly this structure:
+Define your applications as an object:
 
 ```
-WINDOWS = {
-    windows : [
-        {
-            id : "test1", 
-            title : "Test Title 1",
-            focused : true,
-            top : "0%", 
-            left : "0%", 
-            width : "50%", 
-            height : "100%",
-            zIndex : 3,
-            menubar : MENU_BAR
-        },
-        {
-            id : "test2", 
-            title : "Test Title 2",
-            top : "50%", 
-            left : "0%", 
-            width : "100%", 
-            height : "50%",
-            zIndex : 1,
-            pane_tree : {
-                id : "test2_pane",
-                panes : {
-                    split_orientation : 'vertical',
-                    split_percent : '60%',
-                    pane1 : {
-                        id : 'test2_pane1'
-                    },
-                    pane2 : {
-                        id : 'test2_pane2',
-                        panes : {
-                            split_orientation : 'horizontal',
-                            split_percent : '50%',
-                            pane1 : {
-                                id : 'test2_pane2.1'
-                            },
-                            pane2 : {
-                                id : 'test2_pane2.2'
-                            }
-                        }
-                    }
-                }
+var application = {
+    appID : 'f6235091-95f3-4691-aa95-8105a8c40f01',
+    appName : 'Example Application 1',
+    appOpen : true,
+    layout : {
+        windows : [
+            {
+                id : "exampleApp1", 
+                title : "Example Application 1",
+                focused : true,
+                top : "0%", 
+                left : "0%", 
+                width : "50%", 
+                height : "75%",
+                zIndex : 1,
+                menubar : MENU_BAR
             }
-        }
-    ],
+        ],
 
-    zLayer : 0,
-
-    tabs : [
-        {
-            id : "test-tab1",
-            title : "Test Tab 1",
-            pane_id : "test1_pane",
-            active : true,
-            template : "test_template1"
-        },
-        {
-            id : "test-tab2",
-            title : "Test Tab 2",
-            pane_id : "test2_pane1",
-            active : true,
-            template : "test_template2"
-        },
-        {
-            id : "test-tab3",
-            title : "Test Tab 3",
-            pane_id : "test3_pane2.1",
-            active : true,
-            template : "test_template3"
-        },
-        {
-            id : "test-tab4",
-            title : "Test Tab 4",
-            pane_id : "test3_pane2.2",
-            active : true,
-            template : "test_template4"
+        tabs : [
+            {
+                id : "exampleApp1-tab1",
+                title : "Example App 1 Tab 1",
+                pane_id : "exampleApp1_pane",
+                active : true,
+                template : "exampleApp1_template1"
+            },
+            {
+                id : "exampleApp1-tab2",
+                title : "Example App 1 Tab 2",
+                pane_id : "exampleApp1_pane",
+                active : false,
+                template : "exampleApp1_template2"
+            }
+        ]
+    },
+    api : {
+        setMessage : function(msg) {
+            if (Meteor.isClient) Session.set('_app1_msg', msg);
         }
-    ]
+    }
 };
+
+AppManager.registerApp(application);
+
 ```
+
+It is important that you *register* your application after defining it.
+
+The fields on each application are defined by this:
+
+| Application Field | Optional | Valid Values  | Description |
+| ----------------- | :------: | :-----------: | ----------- |
+| appID             | false    | string        | A unique UUID for the application. Omit this to have the library throw an error with a generated UUID. |
+| appName           | false    | string        | Friendly name for the application. |
+| layout            | false    | object        | Defines the layout of the app. Uses the API described in the next table |
+| api               | true     | object        | Define an object of "string" function names to "function" API calls. This can be called by someone calling AppManager.getApp('example').call('api\_func', 'args'). This gives a way of defining an API that other applications can call. |
+
 
 The fields on each window are defined by this:
 
