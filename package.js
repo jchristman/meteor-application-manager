@@ -1,7 +1,7 @@
 Package.describe({
   name: 'jchristman:application-manager',
   summary: 'Meteor package to easily allow desktop-like applications in meteor',
-  version: '1.0.5_2',
+  version: '1.0.6',
   git: 'https://github.com/suntzuII/meteor-application-manager'
 });
 
