@@ -112,7 +112,7 @@ The fields on each application are defined by this:
 | api               | true     | object        | Define an object of "string" function names to "function" API calls. This can be called by someone calling AppManager.getApp('example').call('api\_func', 'args'). This gives a way of defining an API that other applications can call. |
 
 
-The fields on each window are defined by this:
+The fields on each *window* are defined by this:
 
 | Window Field | Optional | Valid Values  | Description |
 | ------------ | :------: | :-----------: | ----------- |
@@ -128,7 +128,7 @@ The fields on each window are defined by this:
 | pane\_tree   | true     | object        | An optional starting pane layout (defined later) |
 | menubar      | true     | object        | An optional menubar for the window (defined later) |
 
-The fields on each window are defined by this:
+The fields on each *tab* are defined by this:
 
 |   Tab Field  | Optional | Valid Values  | Description |
 | ------------ | :------: | :-----------: | ----------- |
