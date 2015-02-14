@@ -1,3 +1,8 @@
+Description
+===========
+
+This library is a package designed to make desktop-like application in a web browser easy. Define a data structure that describes a series of windows and let the library do the rest! It's painless and the library has a bunch of cool features including:
+
 meteor-application-manager
 =============================
 
