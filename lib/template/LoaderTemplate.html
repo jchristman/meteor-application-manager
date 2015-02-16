@@ -1,0 +1,18 @@
+<template name="Applications">
+    {{#each applications}}
+        {{> AppManagerApplication}}
+    {{/each}}
+</template>
+
+<template name="AppManagerApplication">
+    {{#if isAppOpen}}
+        {{#with layout}}
+            {{#each windows}}
+                {{#if isWindowOpen}}
+                    {{> AppManagerAppWindow}}
+                {{/if}}
+            {{/each}}
+        {{/with}}
+    {{/if}}
+</template>
+

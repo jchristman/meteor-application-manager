@@ -1,0 +1,78 @@
+<template name='AppManagerTabbedWindow'>
+    <div class="panes">
+        {{#with paneTree}}
+            {{> AppManagerTabbedWindowPanes}}
+        {{/with}}
+    </div>
+</template>
+
+<template name="AppManagerTabbedWindowPanes">
+    <div class="pane-container" id={{id}}>
+        {{#if isLeaf}}
+            {{> AppManagerTabbedWindowPaneContent}}
+        {{else}}
+            {{#if splitIsVertical}}
+                {{#with splitPercentages}}
+                    <div class="pane pane-left" style="left: 0; top: 0; height: 100%; width: {{pane1_percent}}">
+                        {{#with paneChildLeft}}{{> AppManagerTabbedWindowPanes}}{{/with}}
+                    </div>
+                    {{> AppManagerTabbedWindowPaneDividerVertical}}
+                    <div class="pane pane-right" style="left: {{pane2_start}}; top: 0; height: 100%; width: {{pane2_percent}}">
+                        {{#with paneChildRight}}{{> AppManagerTabbedWindowPanes}}{{/with}}
+                    </div>
+                {{/with}}
+            {{else}}
+                {{#with splitPercentages}}
+                    <div class="pane pane-top" style="left: 0; top: 0; height: {{pane1_percent}}; width: 100%">
+                        {{#with paneChildTop}}{{> AppManagerTabbedWindowPanes}}{{/with}}
+                    </div>
+                    {{> AppManagerTabbedWindowPaneDividerHorizontal}}
+                    <div class="pane pane-bottom" style="left: 0; top: {{pane2_start}}; height: {{pane2_percent}}; width: 100%">
+                        {{#with paneChildBottom}}{{> AppManagerTabbedWindowPanes}}{{/with}}
+                    </div>
+                {{/with}}
+            {{/if}}
+        {{/if}}
+    </div>
+</template>
+
+<template name="AppManagerTabbedWindowPaneDividerVertical">
+    <div class="pane-divider pane-divider-vertical" id="{{id}}_divider" style="left: {{divider_position}};"></div>
+</template>
+<template name="AppManagerTabbedWindowPaneDividerHorizontal">
+    <div class="pane-divider pane-divider-horizontal" id="{{id}}_divider" style="top: {{divider_position}};"></div>
+</template>
+
+<template name="AppManagerTabbedWindowPaneContent">
+    <div class="panel-heading">
+        <ul class="nav nav-tabs">
+            {{#with tabs id}}
+                {{#each windowTabs}}
+                   {{> AppManagerTabbedWindowPaneTabHeader}}
+                {{/each}}
+            {{/with}}
+        </ul>
+    </div>
+    <div class="panel-body">
+        <div class="tab-content">
+            {{#with tabs id}}
+                {{#each windowTabs}}
+                    {{> AppManagerTabbedWindowPaneTabBody}}
+                {{/each}}
+            {{/with}}
+        </div>
+    </div>
+</template>
+
+<template name="AppManagerTabbedWindowPaneTabHeader">
+    <li class="tab-head draggableTab{{#if isActive}} active{{/if}}" id="head_{{id}}"><a style="cursor: pointer">{{title}}</a></li>
+</template>
+
+<template name="AppManagerTabbedWindowPaneTabBody">
+    <div class="tab-pane{{#if isActive}} active{{/if}}" id={{id}}>
+        {{#with tabContentContext}}
+            {{> tabTemplate}}
+        {{/with}}
+    </div>
+</template>
+

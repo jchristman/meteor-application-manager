@@ -29,8 +29,15 @@ Package.onUse(function(api) {
       'lib/context-menus/tab-context-menu-config.js',
       'lib/context-menus/pane-context-menu-config.js',
       'lib/context-menus/context-menu-funcs.js',
+      'lib/template/LoaderTemplate.html',
       'lib/template/WindowsTemplates.html',
-      'lib/template/WindowsTemplates.js'
+      'lib/template/WindowsTemplates.js',
+      'lib/template/content/tabbed-window.html',
+      'lib/template/content/tabbed-window.js',
+      'lib/template/content/tabbed-window.css',
+      'lib/template/content/paged-window.html',
+      'lib/template/content/paged-window.js',
+      'lib/template/content/paged-window.css',
   ],['client']);
 
   api.export([

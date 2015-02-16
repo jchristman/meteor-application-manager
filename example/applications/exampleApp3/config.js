@@ -7,40 +7,38 @@ var application = {
             {
                 id : "exampleApp3", 
                 title : "Example Application 3 Window 1",
+                type : Application.PAGED_WINDOW,
                 focused : true,
                 top : "66%", 
                 left : "25%", 
                 width : "50%", 
                 height : "33%",
                 zIndex : 3,
-                menubar : MENU_BAR
+                pages : [
+                    {
+                        title : 'Page 1',
+                        template : '_example_page_1',
+                    },
+                    {
+                        title : 'Page 2',
+                        template : '_example_page_2',
+                    },
+                    {
+                        title : 'Page 3',
+                        template : '_example_page_3',
+                    },
+                ]
             },
             {
                 id : "exampleApp3.2", 
                 title : "Example Application 3 Window 2",
+                type : Application.NOT_TABBED_WINDOW,
                 focused : false,
                 top : "50%", 
                 left : "50%", 
                 width : "50%", 
                 height : "50%",
                 zIndex : 2,
-                menubar : MENU_BAR
-            }
-        ],
-
-        tabs : [
-            {
-                id : "exampleApp3-tab1",
-                title : "Example App 3 Tab 1",
-                pane_id : "exampleApp3_pane",
-                active : true,
-                template : "exampleApp3_template1"
-            },
-            {
-                id : "exampleApp3-tab2",
-                title : "Example App 3 Tab 2",
-                pane_id : "exampleApp3.2_pane",
-                active : true,
                 template : "exampleApp3_template2"
             }
         ]
