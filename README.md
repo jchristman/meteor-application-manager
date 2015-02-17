@@ -1,7 +1,7 @@
 Description
 ===========
 
-This library is a package designed to make desktop-like application in a web browser easy. Define a data structure that describes a series of windows and let the library do the rest! It's painless and the library has a bunch of cool features.
+This library is a package designed to make desktop-like application in a web browser easy. Define a data structure that describes a series of windows and let the library do the rest! It's painless and the library has a bunch of cool features. Check out a running instance at http://appmanager.meteor.com/ (login in the top left corner). Try logging in to the same account from multiple browsers, logging out and logging back in, etc. The UI is perfectly synchronized always.
 
 meteor-os Plug
 ==============
@@ -28,6 +28,8 @@ This library is a package designed to make desktop-like application in a web bro
 - Create an Application-Specific API that is accessible to other applications via an easy-to-use calling function
 
 One of the main features of this library is that it is a **database-defined UI layout**. What does that mean? What it means is that when you (the application developer) define the window layout structure, a default "Window Manager Profile" is created in the WMCollection. When a user logs in for the first time, a copy of this profile is created for them. Then, any UI changes (like dragging windows, moving tabs, etc) updates their profile to reflect the changes, then the reactive templating system takes care of rerendering everything.
+
+I realize that the look and feel isn't exactly great right now---functionality is more important that form for me right now. On that note, _I'm willing to accept help and will gladly talk to you about contributions_. Just get in contact with me.
 
 What is the significance of this? First, a user can leave and come back and the UI will be the exact same. Second, if two people are logged in from two places, their UI's will always be perfectly synchronized! This opens up some cool avenues for collaborative applications. I've created an example of how to use this library that you can check out by running the following commands. Once it's running, visit http://localhost:3000/ and sign in (link in top left corner) to start playing around with windows!
 
