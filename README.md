@@ -122,6 +122,7 @@ The fields on each *window* are defined by this:
 | Window Field | Optional | Valid Values  | Description |
 | ------------ | :------: | :-----------: | ----------- |
 | id           | false    | string        | Identifier used for accessing DOM element |
+| type         | true     | int           | Identify the type of window. Defaults to Application.TABBED\_WINDOW. Other options are Application.NOT\_TABBED\_Window and Application.PAGED\_WINDOW. |
 | title        | true     | string        | Title of window |
 | focused      | true     | boolean       | Whether or not the window will start with the focused CSS class |
 | closed       | true     | boolean       | Whether or not the window will start closed |
@@ -132,6 +133,7 @@ The fields on each *window* are defined by this:
 | zIndex       | true     | integer       | Starting zIndex of the window |
 | pane\_tree   | true     | object        | An optional starting pane layout (defined later) |
 | menubar      | true     | object        | An optional menubar for the window (defined later) |
+| pages        | depends  | array[object] | If the window type is Application.PAGED\_WINDOW, this field is necessary and needs to be an array of objects, each of which has a string 'title' field and a string 'template' field that is the name of a template to load. |
 
 The fields on each *tab* are defined by this:
 

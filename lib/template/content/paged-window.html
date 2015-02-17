@@ -1,12 +1,14 @@
 <template name='AppManagerPagedWindow'>
 <div class='ampw'>
     <div class='ampw-pages'>
-        {{#each pages}}
-            <div class='ampw-page-title'><span>{{title}}</span></div>
+        {{#each enumPageTitles}}
+        <div class='ampw-page-title {{#if selected}}ampw-page-selected{{/if}}' data-index={{index}}><span>{{title}}</span></div>
         {{/each}}
     </div>
     <div class='ampw-page-content'>
-
+        {{#with getSelectedPage}}
+            {{> selectedPage}}
+        {{/with}}
     </div>
 </div>
 </template>

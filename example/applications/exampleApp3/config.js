@@ -17,15 +17,43 @@ var application = {
                 pages : [
                     {
                         title : 'Page 1',
-                        template : '_example_page_1',
+                        template : '_example_page1',
+                        selected : true
                     },
                     {
                         title : 'Page 2',
-                        template : '_example_page_2',
+                        template : '_example_page2',
+                        selected : false
                     },
                     {
                         title : 'Page 3',
-                        template : '_example_page_3',
+                        template : '_example_page3',
+                        selected : false
+                    },
+                    {
+                        title : 'Page 4',
+                        template : '_example_page4',
+                        selected : false
+                    },
+                    {
+                        title : 'Page 5',
+                        template : '_example_page5',
+                        selected : false
+                    },
+                    {
+                        title : 'Page 6',
+                        template : '_example_page6',
+                        selected : false
+                    },
+                    {
+                        title : 'Page 7',
+                        template : '_example_page7',
+                        selected : false
+                    },
+                    {
+                        title : 'Page 8',
+                        template : '_example_page8',
+                        selected : false
                     },
                 ]
             },
