@@ -1,7 +1,7 @@
 Description
 ===========
 
-This library is a package designed to make desktop-like application in a web browser easy. Define a data structure that describes a series of windows and let the library do the rest! It's painless and the library has a bunch of cool features.
+This library is a package designed to make desktop-like application in a web browser easy. Define a data structure that describes a series of windows and let the library do the rest! It's painless and the library has a bunch of cool features. Check out a running instance at http://appmanager.meteor.com/ (login in the top left corner).
 
 meteor-os Plug
 ==============
